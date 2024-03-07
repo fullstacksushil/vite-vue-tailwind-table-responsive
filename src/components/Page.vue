@@ -6,8 +6,16 @@
       <Test />
       <h3 class="p-4">Component Version</h3>
       <ResponsiveTable :columnDefs="columnDefs" :tableData="people">
+        <template #name="{row}">
+          <div>{{ row.name }}</div>
+        </template>
+        <template #name-mobile="{row}">
+          <dt class="sr-only">Title</dt>
+          <dd class="mt-1 truncate text-gray-700">{{ row.title }}</dd>
+          <dt class="sr-only sm:hidden">Title</dt>
+          <dd class="mt-1 truncate text-gray-700 sm:hidden">{{ row.email }}</dd>
+        </template>
         <template #edit="{ row }">
-          <!-- Custom button for the 'edit' action -->
           <button
             @click="editAction(row)"
             class="text-indigo-600 hover:text-indigo-900"

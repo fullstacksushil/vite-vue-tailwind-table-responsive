@@ -21,15 +21,18 @@
               :key="column.ref"
               :class="column.cellClass"
             >
-              <!-- Check for a named slot corresponding to this column -->
+            <div class="">
               <template v-if="$slots[column.ref]">
-                <!-- Use the slot with dynamic content -->
                 <slot :name="column.ref" :row="row"></slot>
               </template>
               <template v-else>
                 <!-- Fallback to default rendering -->
                 {{ row[column.ref] }}
               </template>
+            </div>
+             <dl v-if="$slots[`${column.ref}-mobile`]" class="lg:hidden font-normal">
+              <slot :name="`${column.ref}-mobile`" :row="row">¡</slot>
+            </dl>
             </td>
           </tr>
         </tbody>
